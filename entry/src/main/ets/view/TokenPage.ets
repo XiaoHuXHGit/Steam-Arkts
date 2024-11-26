@@ -1,0 +1,41 @@
+@Component
+export struct TokenPage {
+  build() {
+    Column(){
+      Text('保护您的Steam账户并使登录更为快速。')
+        .fontColor('#e1e4eb')
+        .fontSize('20vp')
+        .width('85%')
+        .margin({top: '7%'})
+        .textAlign(TextAlign.Center)
+      Image($r('app.media.main_page_token_rc_code'))
+        .width('50%')
+        .margin({top: '8%'})
+      Text('扫描二维码即可登录，而不用输入用户名、密码和验证码。')
+        .fontColor('#e1e4eb')
+        .fontSize('16vp')
+        .width('90%')
+        .margin({top: '7%'})
+        .textAlign(TextAlign.Center)
+      Image($r('app.media.main_page_token_image'))
+        .width('65%')
+        .margin({top: '10%'})
+      Text('轻触即批准登录。')
+        .fontColor('#e1e4eb')
+        .fontSize('16vp')
+        .width('90%')
+        .margin({top: '5%'})
+        .textAlign(TextAlign.Center)
+      Button('添加验证器')
+        .type(ButtonType.Normal)
+        .width('90%')
+        .height('7%')
+        .margin({top: '17.7%'})
+        .backgroundColor('#1997fd')
+        .fontColor(Color.White)
+        .fontSize('16vp')
+        .fontWeight(FontWeight.Regular)
+        .borderRadius('1.5%')
+    }
+  }
+}
