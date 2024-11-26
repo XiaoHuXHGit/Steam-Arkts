@@ -1,4 +1,4 @@
-import { game_data_storage, game_media_storage } from '../data_storage/GameItemListStorage'
+import { default_game_data, default_game_media } from '../data_storage/GameItemListStorage'
 import { discount_price, Evaluation } from '../viewmodel/GameDataPeocess'
 import {
   GameItem,
@@ -12,30 +12,31 @@ import {
 
 @Component
 export struct GamePage {
-  // @State shopping_argparse: GameItem = {
-  //   name: "底特律：化身为人",
-  //   price: 128,
-  //   current: 38,
-  //   cover: "Detroit-Become-Human.jpg",
-  //   isLive: false,
-  //   code: "Detroit-Become-Human"
-  // }
-  @Link shopping_argparse: GameItem
-  @State game_data: GameData = game_data_storage
+  @Prop shopping_argparse: GameItem
+  @State game_data: GameData = default_game_data
 
   async aboutToAppear(): Promise<void> {
     // AppStorage.setOrCreate('server', 'http://127.0.0.1:7860')
     try {
       this.game_data = await get_game_data(this.shopping_argparse.code)
     } catch (error) {
+      this.game_data = default_game_data
+      this.game_data.name = '游戏名字'
       console.error('守岸人没找到游戏数据:', error)
     }
   }
 
-  @Builder
-  private Button_image() {
-    Image('')
+  build() {
+    if (this.game_data.name != 'default') {
+      BuildGamePage({ shopping_argparse: this.shopping_argparse, game_data: this.game_data })
+    }
   }
+}
+
+@Component
+struct BuildGamePage {
+  @Prop shopping_argparse: GameItem
+  @Prop game_data: GameData
 
   build() {
     Scroll() {
@@ -361,8 +362,8 @@ struct evaluation_component {
 @Component
 struct GameMediaComponent {
   @Prop shopping_argparse: GameItem
-  @State game_media_list: GameMedia[] = game_media_storage
-  @State game_media: GameMedia = game_media_storage[0]
+  @State game_media_list: GameMedia[] = default_game_media
+  @State game_media: GameMedia = default_game_media[0]
   @State component_position: number = 0
 
   async aboutToAppear(): Promise<void> {

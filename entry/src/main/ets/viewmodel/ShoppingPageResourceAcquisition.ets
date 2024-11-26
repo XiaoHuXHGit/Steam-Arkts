@@ -1,4 +1,4 @@
-import { feature_and_recommend, game_data_storage, game_media_storage } from '../data_storage/GameItemListStorage'
+import { feature_and_recommend, default_game_data, default_game_media } from '../data_storage/GameItemListStorage'
 import { GameItem } from '../model/GameItem'
 import { GameData, GameMedia } from '../model/GameData';
 import http from '@ohos.net.http';
@@ -34,7 +34,8 @@ export async function get_recommend_game_items(): Promise<GameItem[]> {
 }
 
 export async function get_game_data(code: string): Promise<GameData> {
-  let game_data: GameData = game_data_storage
+  let game_data: GameData = default_game_data
+  game_data.name = '游戏名字'
   if (AppStorage.get('online_service')) {
     let url = AppStorage.get('server') + `/ShoppingGameDataGet?code=${code}`
     const httpRequest = http.createHttp()
@@ -56,7 +57,7 @@ export async function get_game_data(code: string): Promise<GameData> {
 }
 
 export async function get_game_media_data(code: string): Promise<GameMedia[]> {
-  let game_media_data_list: GameMedia[] = game_media_storage
+  let game_media_data_list: GameMedia[] = default_game_media
   if (AppStorage.get('online_service')) {
     let url = AppStorage.get('server') + `/GameMediaListGet?code=${code}`
     const httpRequest = http.createHttp()

@@ -44,12 +44,12 @@ export const feature_and_recommend: GameItem[] = [
   }
 ]
 
-export const game_data_storage: GameData = {
-  name: "Detroit: Become Human",
-  developers: "小子，没连上服务器",
-  publishers: "Quantic Dream",
-  release_date: "2020 年 6 月 18 日",
-  introduction: "在《底特律:化身为人》中，人类和机器人的命运都将学握在您的手中，您将走进一个不远的未来，一个机器人具有比人类更高智慧的时代。您将体验到史上最为复杂的分支故事-一您所作出的每个选择都将影游戏的结局。",
+export const default_game_data: GameData = {
+  name: "default",
+  developers: "开发商",
+  publishers: "发行商",
+  release_date: "2077 年 1 月 1 日",
+  introduction: "小子，你没连服务器啊",
   tags: [
     "选择取向",
     "剧情丰富",
@@ -109,7 +109,7 @@ export const game_data_storage: GameData = {
   ]
 }
 
-export const game_media_storage: GameMedia[] = [
+export const default_game_media: GameMedia[] = [
   {
     name: 'default',
     type: 'image'
